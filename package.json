@@ -1,0 +1,36 @@
+{
+  "name": "impactful-tolerence",
+  "version": "1.0.0",
+  "description": "A web app that lets you view and manage the status of your projects",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ashwins93/impactful-tolerence.git"
+  },
+  "keywords": [
+    "full-stack",
+    "react",
+    "redux",
+    "node",
+    "express",
+    "mongodb",
+    "heroku"
+  ],
+  "author": "ashwins93",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ashwins93/impactful-tolerence/issues"
+  },
+  "homepage": "https://github.com/ashwins93/impactful-tolerence#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.12",
+    "npm": "^5.8.0"
+  }
+}
