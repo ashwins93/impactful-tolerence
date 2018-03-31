@@ -1,18 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const app = express();
 const router = require('./routes');
 const mongoose = require('mongoose');
-
 require('dotenv').config();
-app.use(bodyParser({ urlextended: true }));
+const morgan = require('morgan');
+
+const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use('/api', router);
+app.use(morgan('short'));
 
-mongoose.connect(process.env.DBURL, { useMongoClient: true });
+mongoose.connect(process.env.DBURL);
 mongoose.Promise = Promise;
 mongoose.set('debug', true);
 
-app.listen(process.env.PORT, function () {
-    console.log(`Server listening at port: ${ process.env.PORT }`);
-});
+app.listen(process.env.PORT);
