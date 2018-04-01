@@ -4,11 +4,14 @@ module.exports = mongoose.model(
   'Log',
   new mongoose.Schema(
     {
-      time: {
+      date: {
         type: Date,
         required: true,
       },
-      description: String,
+      description: {
+        type: String,
+        required: true,
+      }
     },
     { usePushEach: true },
   ),

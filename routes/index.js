@@ -1,39 +1,23 @@
 const express = require('express');
+const projects = require('./projects');
+const logs = require('./logs');
 
 const router = express.Router();
-const Project = require('../models/project');
 
-router.get('/', (req, res) => {
-  res.json({ message: 'Hello, world' });
-});
+router.route('/projects')
+  .get(projects.getProjects)
+  .post(projects.addProject);
 
-router.get('/projects', async (req, res) => {
-  try {
-    const projects = await Project.find({}, { name: 1, status: 1 });
-    res.json(projects);
-  } catch (err) {
-    res.json({ message: err.message });
-  }
-});
+router.route('/projects/:id')
+  .get(projects.getProject)
+  .put(projects.updateProject)
+  .delete(projects.deleteProject);
 
-router.get('/projects/:id', async (req, res) => {
-  try {
-    const project = await Project.find({ _id: req.params.id }, { _id: 0 });
-    res.json(project);
-  } catch (err) {
-    res.json({ message: err.message });
-  }
-});
+router.route('/logs/:pid')
+  .post(logs.addLog);
 
-router.post('/projects', async (req, res) => {
-  const { name, status = null, startedOn } = req.body;
-  const project = { name, status, startedOn };
-  try {
-    const created = await Project.create(project);
-    res.json(created);
-  } catch (err) {
-    res.json({ message: err.message });
-  }
-});
+router.route('/logs/:id')
+  .put(logs.updateLog)
+  .delete(logs.deleteLog);
 
 module.exports = router;
